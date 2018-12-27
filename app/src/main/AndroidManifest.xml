@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.beiyongjin.byg"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 允许获取Wi-Fi网络状态改变信息 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 允许拨号 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 允许访问网络 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 允许读取短信息 -->
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <!-- 允许发送短信息 -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <!-- 手机读取权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 允许程序监控一个将收到短信息，记录或处理 -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <!-- 往sdcard中写入数据的权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 读取通讯录权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- 在sdcard中创建/删除文件的权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- 读取程序信息  IMEI -->
+    <uses-permission android:name="android.permission.READ0_PHONE_STATE" />
+    <!-- 照相机 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 读取通话记录 -->
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <!-- 修改通话记录 -->
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    <!-- 允许不同用户的应用之间可以产生交互 -->
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
+    <!-- 获取地理信息位置 -->
+    <!-- 精确定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 粗糙定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--允许程序更新手机电池统计信息-->
+    <uses-permission android:name="android.permission.BATTERY_STATS" />
+    <!--允许程序连接到已配对的蓝牙设备-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <!--允许程序读取或写入系统设置-->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!--允许程序访问Wi-Fi网络状态信息-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 可选权限，不声明此部分权限将放弃部分设备信息的采集，对数据分析及设备指纹的精准度有一定影响 -->
+    <!--允许程序获取当前或最近运行的应用 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!--允许程序访问有关GSM网络信息-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />
+    <!--采集传感器信息必要权限-->
+    <uses-feature android:required="true"
+        android:name="android.hardware.sensor.accelerometer"/>
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_ADMIN" />
+
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="allowBackup,icon,label">
+
+        <!-- URL Router -->
+        <activity
+            android:name="com.github.mzule.activityrouter.router.RouterActivity"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- 改成自己的scheme -->
+                <data android:scheme="wolverine" />
+            </intent-filter>
+        </activity>
+
+        <!-- 启动页 -->
+        <activity
+            android:name=".module.home.ui.activity.SplashAct"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 引导页 -->
+        <activity
+            android:name=".module.home.ui.activity.GuideAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 主页 -->
+        <activity
+            android:name=".MainAct"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <!-- ******************************* 手势密码 ********************************* -->
+        <!-- 手势密码设置界面 -->
+        <activity
+            android:name=".module.gesture.ui.activity.LockAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 手势密码解锁界面 -->
+        <activity
+            android:name=".module.gesture.ui.activity.UnlockAct"
+            android:screenOrientation="portrait" />
+
+        <!-- ******************************* 主页及借款 ******************************* -->
+
+        <!-- 借款 -->
+        <activity
+            android:name=".module.home.ui.activity.LoanAct"
+            android:screenOrientation="portrait" />
+
+        <!-- ******************************* 还款 ******************************* -->
+        <!-- 还款详情 -->
+        <activity
+            android:name=".module.repay.ui.activity.RepayDetailsAct"
+            android:screenOrientation="portrait" />
+        <!-- 邀请好友 -->
+        <activity
+            android:name=".module.mine.ui.activity.InviteFriendAct"
+            android:screenOrientation="portrait" />
+        <!-- 邀请记录 -->
+        <activity
+            android:name=".module.mine.ui.activity.InviteRecordAct"
+            android:screenOrientation="portrait" />
+        <!-- 二级邀请记录 -->
+        <activity
+            android:name=".module.mine.ui.activity.InviteRecordSecondAct"
+            android:screenOrientation="portrait" />
+        <!-- 我的奖金 -->
+        <activity
+            android:name=".module.mine.ui.activity.InviteBonusAct"
+            android:screenOrientation="portrait" />
+        <!-- 奖励明细 -->
+        <activity
+            android:name=".module.mine.ui.activity.InviteAwardAct"
+            android:screenOrientation="portrait" />
+        <!-- 提现记录 -->
+        <activity
+            android:name=".module.mine.ui.activity.InviteBonusRecordAct"
+            android:screenOrientation="portrait" />
+
+        <!-- ******************************* 我的 ******************************* -->
+        <!-- 人证中心 -->
+        <activity
+            android:name=".module.mine.ui.activity.CreditCenterAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 人证中心 -->
+        <activity
+            android:name=".module.mine.ui.activity.CreditCenterTwoAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 人证中心 -->
+        <activity
+            android:name=".module.mine.ui.activity.CreditCenterThreeAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 消息中心 -->
+        <activity
+            android:name=".module.mine.ui.activity.MsgCenterAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 我的邀请码 -->
+        <activity
+            android:name=".module.mine.ui.activity.MineInviteAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 人证中心 -->
+        <activity
+            android:name=".module.mine.ui.activity.CreditBankAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 已绑定银行卡 -->
+        <activity
+            android:name=".module.mine.ui.activity.CreditBankBindAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 联系人 -->
+        <activity
+            android:name=".module.mine.ui.activity.CreditLinkerAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 个人信息 -->
+        <activity
+            android:name=".module.mine.ui.activity.CreditPersonAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 公积金 -->
+        <activity
+            android:name=".module.mine.ui.activity.CreditAccumulationFundAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 个人信息 -->
+        <activity
+            android:name=".module.mine.ui.activity.CreditPersonTwoAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 个人信息 -->
+        <activity
+            android:name=".module.mine.ui.activity.CreditPersonThreeAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 高德地图 -->
+        <activity
+            android:name=".module.mine.ui.activity.GdMapAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 工作信息 -->
+        <activity
+            android:name=".module.mine.ui.activity.CreditWorkAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 芝麻信用 -->
+        <activity
+            android:name=".module.mine.ui.activity.CreditZmxyAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 运营商人证 -->
+        <activity
+            android:name=".module.mine.ui.activity.CreditPhoneAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 借款记录 -->
+        <activity
+            android:name=".module.mine.ui.activity.TransactionRecordAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 意见反馈 -->
+        <activity
+            android:name=".module.mine.ui.activity.SettingsIdeaAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 还款方式 -->
+        <activity
+            android:name=".module.repay.ui.activity.RepayTypeAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 自动扣款 -->
+        <activity
+            android:name=".module.repay.ui.activity.RepayAutoAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 还款 -->
+        <activity
+            android:name=".module.repay.ui.activity.RepayAccountAct"
+            android:screenOrientation="portrait" />
+        <!--续借-->
+        <activity
+            android:name=".module.repay.ui.activity.RenewAct"
+            android:screenOrientation="portrait" />
+        <!--续借记录-->
+        <activity
+            android:name=".module.repay.ui.activity.RenewRecordAct"
+            android:screenOrientation="portrait" />
+        <!-- ******************************* 设置 ******************************* -->
+        <!-- 设置 -->
+        <activity
+            android:name=".module.mine.ui.activity.SettingsAct"
+            android:screenOrientation="portrait" />
+        <!-- ******************************* 登录 ******************************* -->
+        <!-- 登录 -->
+        <activity
+            android:name=".module.user.ui.activity.LoginAct"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!-- 注册 -->
+        <activity
+            android:name=".module.user.ui.activity.RegisterAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 忘记密码 -->
+        <activity
+            android:name=".module.user.ui.activity.ForgotAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 忘记交易密码 -->
+        <activity
+            android:name=".module.user.ui.activity.ForgotPayAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 修改密码 -->
+        <activity
+            android:name=".module.user.ui.activity.SettingsUpdatePwdAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 修改\设置交易密码 -->
+        <activity
+            android:name=".module.user.ui.activity.SettingsPayPwdAct"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <!--微信的客服页面-->
+        <activity android:name=".module.mine.ui.activity.ServiceWechatAct"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+
+        <!-- linkface start -->
+        <!-- 人脸识别 -->
+        <activity
+            android:name="com.sensetime.stlivenesslibrary.ui.LivenessActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 身份证识别 -->
+        <activity
+            android:name=".utils.aLiveUtil.IDCardBothActivity"
+            android:configChanges="keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <!-- 身份证识别 -->
+        <activity
+            android:name="com.sensetime.idcard.IDCardActivity"
+            android:configChanges="keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <!-- linkface end -->
+
+        <!-- face++ start -->
+        <!-- 身份证扫描 -->
+        <activity
+            android:name="com.megvii.idcardlib.IDCardScanActivity"
+            android:screenOrientation="portrait" />
+        <!-- 活体识别扫描 -->
+        <activity
+            android:name="com.megvii.livenesslib.LivenessActivity"
+            android:screenOrientation="portrait" />
+        <!-- face++ end -->
+        <!-- 浏览器 -->
+        <activity
+            android:name=".common.ui.WebViewAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 芝麻信用 -->
+        <activity
+            android:name="com.android.moblie.zmxy.antgroup.creditsdk.app.SDKActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 高的地图key -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="${MAP_GD_KEY}" />
+
+        <!-- 定位需要的服务 使用2.0的定位需要加上这个 -->
+        <service android:name="com.amap.api.location.APSService" />
+
+        <activity
+            android:name=".module.mine.ui.activity.CreditMoreAct"
+            android:screenOrientation="portrait" />
+        <!-- ******************************* 友盟 ******************************* -->
+        <!-- 友盟的key与渠道 -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="${UMENG_KEY}" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${APP_CHANNEL_VALUE}" />
+        <!-- 微信回调 -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- QQ完整版 -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent100424468" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".module.mine.ui.activity.CreditWorkPhotoAct"
+            android:screenOrientation="portrait" />
+
+        <!-- LLYT SDK START -->
+        <activity
+            android:name="com.yintong.secure.activity.BaseActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="adjustResize" />
+
+        <service android:name="com.yintong.secure.service.PayService" />
+        <!-- LLYT SDK END -->
+
+        <!--同盾-->
+        <meta-data
+            android:name="PARTNER_CODE"
+            android:value="${PARTNER_CODE}" />
+
+        <!-- 个推 start -->
+        <!--用户自定义服务继承自GTIntentService,作为SDK与APP桥梁服务,用来接收各种消息和命令回复-->
+        <service android:name=".service.CustomIntentService" />
+
+        <!-- 用户自定义服务名 -->
+        <service
+            android:name=".service.CustomPushService"
+            android:exported="true"
+            android:label="PushService"
+            android:process=":pushservice" />
+
+        <receiver android:name=".receiver.CustomReceiver">
+            <intent-filter>
+                <action android:name="com.beiyongjin.byg" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="com.igexin.sdk.action.refreshls" />
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+        <!-- 个推 end -->
+    </application>
+
+</manifest>
